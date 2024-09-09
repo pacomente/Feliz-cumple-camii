@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Cumpleaños Camila</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            font-family: 'Courier New', Courier, monospace;
+            color: #000000;
+        }
+
+       
+        /* Carta cerrada */
+        .letter {
+            width: 200px;
+            height: 120px;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .letter:hover {
+            transform: scale(1.1);
+        }
+        .letter::before, .letter::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+        .letter::before {
+            top: 0;
+            left: 0;
+            border-width: 0 100px 60px 100px;
+            border-color: transparent transparent #ffafbd transparent;
+        }
+        .letter::after {
+            top: 60px;
+            left: 0;
+            border-width: 60px 100px 0 100px;
+            border-color: #ffc3a0 transparent transparent transparent;
+        }
+
+        /* Carta abierta */
+        .container {
+            display: none;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            max-width: 800px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .container.active {
+            display: block;
+            opacity: 1;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            animation: glow 2s infinite alternate;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin: 20px 0;
+        }
+
+        .heart {
+            color: red;
+            font-size: 2.5rem;
+            animation: heartbeat 1s infinite;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
+            }
+            to {
+                text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff;
+            }
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #ff00ff;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #f10ad3;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+            color: #ff0080;
+        }
+
+        .question {
+            font-size: 1.7rem;
+            margin: 40px 0;
+            color: #ff0080;
+        }
+
+        .question button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            border: 2px solid #ff79b0;
+            background-color: #ff79b0;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .question button:hover {
+            background-color: #ff0080;
+        }
+
+        /* Animación de la imagen flotante */
+        .image-container {
+            margin: 30px 0;
+            animation: float 4s infinite ease-in-out;
+        }
+
+        .image-container img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Música de fondo (romántica) -->
+    <audio id="music" loop>
+        <source src="Jósean Log - Chachachá (Lyric Video).mp3" type="audio/mp3">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <!-- Carta cerrada al principio -->
+    <div class="letter" onclick="openCard()">
+        <p style="position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); color: #ff0080; font-size: 1.2rem;">Abrir Carta</p>
+    </div>
+
+    <!-- Contenido que aparece después de abrir la carta -->
+    <div class="container" id="content">
+        <h1>Feliz Cumpleaños, Camila! </h1>
+        <h1>Feliz Cumpleaños, Camila! </h1>
+        <h1>Feliz Cumpleaños, Camila! </h1>
+        <h1>Feliz Cumpleaños, Camila! </h1>
+        <h1>Feliz Cumpleaños, Camila! </h1>
+        <h1>Feliz Cumpleaños, Camila! .</h1>
+        <h1>Feliz Cumpleaños, Camila! 🎂</h1>
+        <h1>Feliz Cumpleaños, Camila! </h1>
+        <h1>Feliz Cumpleaños, Camila! 🎂</h1>
+        <h1>Feliz Cumpleaños, Camila! 🎂</h1>
+        <h1>Feliz Cumpleaños, Camila! 🎂</h1>
+
+
+
+        <p>Hoy celebras tus <strong>19</strong> años, y estoy tan feliz de estar contigo.</p>
+        <p>Gracias por iluminar mi vida con tu sonrisa. ¡Te amo más de lo que las palabras pueden decir! <span class="heart">❤</span></p>
+        <p> Gracias por ser la persona maravillosa que eres. ¡Te quiero con todo mi corazón! ❤</p>
+        <p>Que este nuevo año de tu vida esté lleno de amor, alegría y sueños cumplidos. Siempre estaré a tu lado.</p>
+        <!-- Espacio para añadir más fotos -->
+        <div class="image-container">
+            <img src="cami/cami1.jpeg" alt="Foto de amor">
+            <img src="cami/cami2.jpeg" alt="Foto de recuerdo">
+            <img src="cami/cami3.jpeg" alt="Foto de amor">
+            <img src="cami/cami4.jpeg" alt="Foto de recuerdo">
+            <img src="cami/cami5.jpeg" alt="Foto de amor">
+            <img src="cami/cami6.jpeg" alt="Foto de recuerdo">
+            <img src="cami/7.jpeg" alt="Foto de recuerdo">
+            <img src="cami/cami8.jpeg" alt="Foto de recuerdo">
+            <img src="cami/cami9.jpeg" alt="Foto de recuerdo">
+            <img src="cami/cami10.jpeg" alt="Foto de recuerdo">
+            <img src="cami/cami11.jpeg" alt="Foto de recuerdo">
+            <img src="cami/cami12.jpeg" alt="Foto de recuerdo">
+
+        </div>
+
+        <!-- Preguntas románticas de pareja -->
+        <p class="question">¿Sabes cuánto te quiero?</p>
+        <button onclick="alert('¡Muchísimo! Más de lo que te imaginas.')">Mucho</button>
+        <button onclick="alert('¡Infinito! Eres todo para mí.')">Infinito</button>
+        
+        <p class="question">¿Aceptas seguir compartiendo la vida conmigo?</p>
+        <button onclick="alert('¡Sí, claro que sí! 😊')">Sí</button>
+
+        <p>Te amor mucho mi loquita hermosa, lindos momentos inolvidables que pasamos cuando nos conocimos. Eres mi felicidad.</p>
+        <a href="#" class="btn">Con todo mi amor, tu Mantecol 😊</a>
+    </div>
+
+    <script>
+        function openCard() {
+            document.querySelector('.letter').style.display = 'none';
+            document.getElementById('content').classList.add('active');
+            
+            // Iniciar música cuando la carta se abra
+            document.getElementById('music').play();
+        }
+    </script>
+</body>
+</html>
